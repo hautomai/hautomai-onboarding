@@ -1,0 +1,36 @@
+{
+  "name": "hautomai-onboarding",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Hautomai client onboarding automation. n8n-free, per-client configurable integrations.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run build -w @hautomai/core && npm run build -w @hautomai/adapters && concurrently -k -n server,web -c magenta,cyan \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "npm run dev -w @hautomai/server",
+    "dev:web": "npm run dev -w @hautomai/web",
+    "build": "npm run build -w @hautomai/core && npm run build -w @hautomai/adapters && npm run build -w @hautomai/server && npm run build -w @hautomai/web",
+    "start": "npm run start -w @hautomai/server",
+    "typecheck": "npm run build -w @hautomai/core && npm run build -w @hautomai/adapters && npm --workspaces --if-present run typecheck",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "migrate": "npm run migrate -w @hautomai/server"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.7.0",
+    "@types/node": "^20.14.0",
+    "@types/supertest": "^6.0.2",
+    "concurrently": "^9.0.0",
+    "eslint": "^9.7.0",
+    "supertest": "^7.0.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.0.5"
+  }
+}
